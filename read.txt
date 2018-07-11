@@ -1,2 +1,4 @@
+sudo apt-get install git
+git clone https://github.com/opencv/opencv.git
 chmod +x opencv.sh
 ./opencv.sh
