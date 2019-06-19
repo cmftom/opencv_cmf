@@ -3,6 +3,7 @@
 -------
 # Just download the opencv.sh file and clone the opencv
 ```bash
+sudo apt update && sudo apt upgrade
 sudo apt-get install git
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/cmftom/opencv_cmf
