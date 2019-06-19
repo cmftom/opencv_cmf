@@ -33,8 +33,14 @@ cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-    -D ENABLE_NEON=OFF \
-    -D ENABLE_VFPV3=ON \
+    -D WITH_OPENGLES=ON \
+    -D ENABLE_NEON=NO \
+    -D ENABLE_VFPV3=NO \  
+    -D WITH_QT=OFF \
+    -D WITH_GTK=OFF \
+    -D WITH_CUDA=OFF \
+    -D BUILD_opencv_java=OFF \
+    -D BUILD_JAVA=NO \
     -D BUILD_TESTS=OFF \
     -D OPENCV_ENABLE_NONFREE=ON \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
