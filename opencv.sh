@@ -1,3 +1,4 @@
+sudo apt-get install wget
 version="$(wget -q -O - http://sourceforge.net/projects/opencvlibrary/files/opencv-unix | egrep -m1 -o '\"[0-9](\.[0-9]+)+' | cut -c2-)"
 echo "Installing OpenCV" $version
 mkdir OpenCV
@@ -9,8 +10,7 @@ echo "Installing Dependenices"
 sudo apt-get install libopencv-dev
 echo "************Build Tools***********************"
 echo "<----------------------------------------------------Build Tools------------------------------------------------->"
-sudo apt-get install build-essential checkinstall cmake pkg-config
-sudo apt-get install wget 
+sudo apt-get install build-essential checkinstall cmake pkg-config 
 echo "*_*_*_*_*_*_*_*_*_*_*_*_*_*"
 echo "<------------------------------------------------------Image I/O----------------------------------------------------->"
 sudo apt-get install libtiff5-dev libjpeg-dev libjasper-dev libpng-dev zliblg-dev libwebp-dev libopenexr-dev libgdal-dev
@@ -37,7 +37,7 @@ echo sudo apt-get install python-dev python-tk python-numpy python3-dev python3-
 sudo apt-get install python-opencv
 echo "%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%"
 echo "Downloading OpenCV" $version
-wget -O OpenCV-$version.zip https://github.com/opencv/opencv/archive/4.0.0.zip
+wget -O OpenCV-$version.zip https://sourceforge.net/projects/opencvlibrary/files/opencv-unix/$version/download
 echo "Installing OpenCV" $version
 unzip OpenCV-$version.zip
 cd opencv-$version
