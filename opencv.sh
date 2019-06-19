@@ -36,7 +36,7 @@ echo sudo apt-get install python-dev python-tk python-numpy python3-dev python3-
 sudo apt-get install python-opencv
 echo "%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%"
 echo "Downloading OpenCV" $version
-wget -O OpenCV-$version.zip http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/$version/opencv-"$version".zip/download
+wget -O OpenCV-$version.zip https://github.com/opencv/opencv/archive/4.0.0.zip
 echo "Installing OpenCV" $version
 unzip OpenCV-$version.zip
 cd opencv-$version
