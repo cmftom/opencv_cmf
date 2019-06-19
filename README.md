@@ -15,5 +15,10 @@ chmod +x opencv.sh
 mv ~/opencv/opencv_cmf/opencv.sh ~/opencv
 
 ```
+At the end, set conf_SWAPSIZE back
+```
+sudo nano /etc/dphys-swapfile
+CONF_SWAPSIZE=1000
+```
 ## Done!
 -------
