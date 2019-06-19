@@ -5,6 +5,7 @@
 ```bash
 sudo apt-get install git
 git clone https://github.com/opencv/opencv.git
+git clone https://github.com/cmftom/opencv_cmf
 ```
 # After the cloning, type the following commond
 ```bash
