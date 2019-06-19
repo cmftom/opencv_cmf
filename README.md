@@ -13,9 +13,11 @@ git clone https://github.com/cmftom/opencv_cmf
 ```
 # After the cloning, type the following commond
 ```bash
-mv ~/opencv/opencv_cmf/opencv.sh ~/opencv
+cd opencv_cmf
 chmod +x opencv.sh
 ./opencv.sh -y
+mv ~/opencv/opencv_cmf/opencv.sh ~/opencv
+
 ```
 ## Done!
 -------
