@@ -1,70 +1,49 @@
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install build-essential cmake unzip pkg-config
+sudo apt-get install libjpeg-dev libpng-dev libtiff-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install libgtk-3-dev
+sudo apt-get install libcanberra-gtk*
+sudo apt-get install libatlas-base-dev gfortran
+sudo apt-get install python3-dev
+cd ~
 sudo apt-get install wget && sudo apt-get install unzip
-version="$(wget -q -O - http://sourceforge.net/projects/opencvlibrary/files/opencv-unix | egrep -m1 -o '\"[0-9](\.[0-9]+)+' | cut -c2-)"
-echo "Installing OpenCV" $version
-mkdir OpenCV
-cd OpenCV
-echo "Removing any pre-installed ffmpeg and x264"
-echo "sudo apt-get remove x264 libx264-dev"
-echo "***********************************"
-echo "Installing Dependenices"
-sudo apt-get install libopencv-dev
-echo "************Build Tools***********************"
-echo "<----------------------------------------------------Build Tools------------------------------------------------->"
-sudo apt-get install build-essential checkinstall cmake pkg-config 
-echo "*_*_*_*_*_*_*_*_*_*_*_*_*_*"
-echo "<------------------------------------------------------Image I/O----------------------------------------------------->"
-sudo apt-get install libtiff5-dev libjpeg-dev libjasper-dev libpng-dev zliblg-dev libwebp-dev libopenexr-dev libgdal-dev
-echo "***********************************"
-echo "<--------------------------------------------------------Video I/O--------------------------------------------------->"
-sudo apt-get install libavcodec-dev libavformat-dev libmp3lame-dev
-sudo apt-get install libswscale-dev libdc1394-22-dev libxine-dev
-sudo apt-get install libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
-sudo apt-get install libv4l-dev v4l-utils libfaac-dev libopencore-amrnb-dev
-sudo apt-get instal libopencore-amrwb-dev libtheora-dev libvorbis-dev
-sudo apt-get insta libxvidcore-dev libx264-dev x264 yasm
-echo "***********************************"
-echo "Parallelism and linear algebra libraries"
-sudo apt-get install libtbb-dev libeigen3-dev
-echo "***********************************"
-echo "<------------------------------------------------for GUI------------------------------------------------->"
-sudo apt-get install libqt4-dev libgtk2.0-dev qt5-default
-echo " sudo apt-get install libvtk6-dev"
-echo "*************************************************************************************************************"
-echo "<--------------For JAVA-------------------->"
-echo sudo apt-get install ant default-jdk
-echo "<-------********------For Python------********-------->"
-#echo sudo apt-get install python-dev python-tk python-numpy python3-dev python3-tk python3-numpy python-matplotlib
-echo sudo apt-get install python-dev python-tk python-numpy python-matplotlib
-sudo apt-get install python-opencv
-echo "%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%"
-echo "Downloading OpenCV" $version
-wget -O OpenCV-$version.zip https://sourceforge.net/projects/opencvlibrary/files/opencv-unix/3.4.3/download
-echo "Installing OpenCV" $version
-unzip OpenCV-$version.zip
-cd opencv-$version
+wget -O opencv.zip https://github.com/opencv/opencv/archive/4.0.0.zip
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.0.0.zip
+unzip opencv.zip
+unzip opencv_contrib.zip
+mv opencv-4.0.0 opencv
+mv opencv_contrib-4.0.0 opencv_contrib
+wget https://bootstrap.pypa.io/get-pip.py
+sudo python3 get-pip.py
+sudo pip install virtualenv virtualenvwrapper
+sudo rm -rf ~/get-pip.py ~/.cache/pip
+echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.profile
+echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.profile
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.profile
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.profile
+source ~/.profile
+mkvirtualenv cv -p python3
+workon cv
+pip install numpy
+cd ~/opencv
 mkdir build
 cd build
-echo "*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_"
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-	-D CMAKE_INSTALL_PREFIX=/usr/local \
-    	-D WITH_TBB=ON \
-  	-D BUILD_NEW_PYTHON_SUPPORT=ON \
-    	-D WITH_V4L=ON \
-      	-D BUILD_opencv_java=ON \
-    	-D INSTALL_C_EXAMPLES=ON \
-    	-D INSTALL_PYTHON_EXAMPLES=ON \
-    	-D BUILD_DOCS=ON \
-    	-D BUILD_EXAMPLES=ON \
-    	-D WITH_QT=ON \
-    	-D WITH_OPENGL=ON \
-    	-D WITH_EIGEN=ON ..
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+    -D ENABLE_NEON=OFF \
+    -D ENABLE_VFPV3=ON \
+    -D BUILD_TESTS=OFF \
+    -D OPENCV_ENABLE_NONFREE=ON \
+    -D INSTALL_PYTHON_EXAMPLES=OFF \
+    -D BUILD_EXAMPLES=OFF ..
+echo "CONF_SWAPSIZE=2048" >> /etc/dphys-swapfile
+source /etc/dphys-swapfile
 make -j4
-echo "***********************************"
 sudo make install
-echo "***********************************"
-sudo sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
-echo "***********************************"
 sudo ldconfig
-echo "OpenCV" $version "ready to be used"
-
-
+cd ~/.virtualenvs/cv/lib/python3.5/site-packages/
+ln -s /usr/local/python/cv2/python-3.5/cv2.cpython-35m-arm-linux-gnueabihf.so cv2.so
+cd ~
