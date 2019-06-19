@@ -1,4 +1,4 @@
-sudo apt-get install wget
+sudo apt-get install wget && sudo apt-get install unzip
 version="$(wget -q -O - http://sourceforge.net/projects/opencvlibrary/files/opencv-unix | egrep -m1 -o '\"[0-9](\.[0-9]+)+' | cut -c2-)"
 echo "Installing OpenCV" $version
 mkdir OpenCV
@@ -38,7 +38,7 @@ echo sudo apt-get install python-dev python-tk python-numpy python-matplotlib
 sudo apt-get install python-opencv
 echo "%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%"
 echo "Downloading OpenCV" $version
-wget -O OpenCV-$version.zip https://sourceforge.net/projects/opencvlibrary/files/opencv-unix/$version/download
+wget -O OpenCV-$version.zip https://sourceforge.net/projects/opencvlibrary/files/opencv-unix/3.4.3/download
 echo "Installing OpenCV" $version
 unzip OpenCV-$version.zip
 cd opencv-$version
