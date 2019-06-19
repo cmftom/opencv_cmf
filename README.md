@@ -6,7 +6,7 @@
 sudo apt update && sudo apt upgrade
 cd ~
 mkdir opencv && cd opencv && sudo apt-get install git && git clone https://github.com/cmftom/opencv_cmf
-~git clone https://github.com/opencv/opencv.git~
+-it clone https://github.com/opencv/opencv.git-
 ```
 # After the cloning, type the following commond
 ```bash
