@@ -10,6 +10,7 @@ sudo apt-get install libopencv-dev
 echo "************Build Tools***********************"
 echo "<----------------------------------------------------Build Tools------------------------------------------------->"
 sudo apt-get install build-essential checkinstall cmake pkg-config
+sudo apt-get install wget 
 echo "*_*_*_*_*_*_*_*_*_*_*_*_*_*"
 echo "<------------------------------------------------------Image I/O----------------------------------------------------->"
 sudo apt-get install libtiff5-dev libjpeg-dev libjasper-dev libpng-dev zliblg-dev libwebp-dev libopenexr-dev libgdal-dev
