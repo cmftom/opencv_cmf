@@ -1,10 +1,8 @@
 -------
 ## It is use for download latest OpenCV for Linux (Raspberry pi)
 -------
-# Creat InstallCV file and clone this git inside
+# Clone this git inside
 ```
-$mkdir InstallCV
-$cd InstallCV 
 $sudo apt-get install git 
 $git clone https://github.com/cmftom/opencv_cmf
 ```
