@@ -20,33 +20,30 @@ cd /opt
 git clone https://github.com/opencv/opencv_contrib.git
 
 # Create temp build
-mkdir -p /opt/opencv/build && \
-cd /opt/opencv/build && \
+sudo mkdir -p /opt/opencv/build
+cd /opt/opencv/build
 
 # CMAKE
-sudo cmake \
-    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules \
-    -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D WITH_FFMPEG=ON \
-    -D WITH_OPENGLES=ON \
-    # RPI ZERO doesn't has full OPENGL, but OPENGLES.
-    -D ENABLE_NEON=NO \
-    -D ENABLE_VFPV3=NO \  
-    # RPI ZERO doesn't has NEON or VFPV3
-    -D OPENCV_ENABLE_NONFREE=ON \
-    -D WITH_QT=OFF \
-    -D WITH_GTK=OFF \
-    -D WITH_CUDA=OFF \
-    -D BUILD_opencv_java=OFF \
-    -D BUILD_JAVA=NO \
-    -D BUILD_EXAMPLES=NO \
-    -D BUILD_ANDROID_EXAMPLES=NO \
-    -D INSTALL_PYTHON_EXAMPLES=NO \
-    -D BUILD_DOCS=NO \
-    -D BUILD_opencv_python2=NO \
-    -D BUILD_opencv_python3=ON \
-    .. && \
+sudo cmake -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules \
+-D CMAKE_BUILD_TYPE=RELEASE \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D WITH_FFMPEG=ON \
+-D WITH_OPENGLES=ON \
+-D ENABLE_NEON=NO \
+-D ENABLE_VFPV3=NO \
+-D OPENCV_ENABLE_NONFREE=ON \
+-D WITH_QT=OFF \
+-D WITH_GTK=OFF \
+-D WITH_CUDA=OFF \
+-D BUILD_opencv_java=OFF \
+-D BUILD_JAVA=NO \
+-D BUILD_EXAMPLES=NO \
+-D BUILD_ANDROID_EXAMPLES=NO \
+-D INSTALL_PYTHON_EXAMPLES=NO \
+-D BUILD_DOCS=NO \
+-D BUILD_opencv_python2=NO \
+-D BUILD_opencv_python3=ON \
+..
 
 # Make
 make -j4
@@ -54,5 +51,5 @@ make -j4
 # Install
 sudo make install
 
-cd / && \
-rm -rf /opt/opencv-${OPENCV_VERSION} && \
+cd
+rm -rf /opt/opencv
