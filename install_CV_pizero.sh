@@ -20,7 +20,7 @@ git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
 # Create temp build
-sudo mkdir -p /opt/openc/build 
+sudo mkdir -p /opt/opencv/build 
 cd /opt/opencv/build
 
 # CMAKE
