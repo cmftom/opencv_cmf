@@ -10,7 +10,7 @@ $git clone https://github.com/cmftom/opencv_cmf
 ```
 cd opencv_cmf
 chmod +x install_CV.sh
-sudo ./install_CV.sh -y
+sudo ./install_CV_pizero.sh -y
 ```
 # Try to import OpenCV in python
 ```
