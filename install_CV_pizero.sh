@@ -12,32 +12,41 @@ sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev lib
 sudo apt -y install libjpeg-dev libpng-dev libtiff-dev gfortran openexr libatlas-base-dev opencl-headers
 sudo apt -y install python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-dev
 
-# Create build directory
-sudo mkdir ./opencv_build 
-cd ./opencv_build
+# Do everything at /opt
+cd /opt/.
 
 # Download the opencv
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
 # Create temp build
-cd opencv
-sudo mkdir -p ./build 
-cd ./build
+sudo mkdir -p /opt/opencv_build/build 
+cd /opt/opencv_build/build
 
 # CMAKE
-sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
+sudo cmake \
+    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-${OPENCV_VERSION}/modules \
+    -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D INSTALL_C_EXAMPLES=OFF \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
-    -D OPENCV_GENERATE_PKGCONFIG=ON \
-    -D ENABLE_NEON=OFF \
-    -D OPENCV_EXTRA_EXE_LINKER_FLAGS=-latomic \
-    -D ENABLE_VFPV3=ON \
-    -D BUILD_TESTS=OFF \
+    -D WITH_FFMPEG=ON \
+    -D WITH_OPENGLES=ON \
+    # RPI ZERO doesn't has full OPENGL, but OPENGLES.
+    -D ENABLE_NEON=NO \
+    -D ENABLE_VFPV3=NO \  
+    # RPI ZERO doesn't has NEON or VFPV3
     -D OPENCV_ENABLE_NONFREE=ON \
-    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_build/opencv_contrib/modules \
-    -D BUILD_EXAMPLES=OFF ..
+    -D WITH_QT=OFF \
+    -D WITH_GTK=OFF \
+    -D WITH_CUDA=OFF \
+    -D BUILD_opencv_java=OFF \
+    -D BUILD_JAVA=NO \
+    -D BUILD_EXAMPLES=NO \
+    -D BUILD_ANDROID_EXAMPLES=NO \
+    -D INSTALL_PYTHON_EXAMPLES=NO \
+    -D BUILD_DOCS=NO \
+    -D BUILD_opencv_python2=NO \
+    -D BUILD_opencv_python3=ON \
+    .. && \
 
 # Make
 make -j4
