@@ -14,23 +14,18 @@ sudo apt -y install python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-de
 
 # Download the opencv
 cd /opt
-wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
-unzip ${OPENCV_VERSION}.zip
-rm -rf ${OPENCV_VERSION}.zip
-
+git clone https://github.com/opencv/opencv.git
 
 cd /opt
-wget https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
-unzip ${OPENCV_VERSION}.zip
-rm -rf ${OPENCV_VERSION}.zip
+git clone https://github.com/opencv/opencv_contrib.git
 
 # Create temp build
-mkdir -p /opt/opencv-${OPENCV_VERSION}/build && \
-cd /opt/opencv-${OPENCV_VERSION}/build && \
+mkdir -p /opt/opencv/build && \
+cd /opt/opencv/build && \
 
 # CMAKE
 sudo cmake \
-    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-${OPENCV_VERSION}/modules \
+    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D WITH_FFMPEG=ON \
