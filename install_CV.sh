@@ -25,7 +25,7 @@ sudo mkdir -p ./opencv_build/opencv/build
 cd ./opencv_build/opencv/build
 
 # CMAKE
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
+sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D INSTALL_C_EXAMPLES=OFF \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
