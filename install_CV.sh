@@ -13,7 +13,7 @@ sudo apt -y install libjpeg-dev libpng-dev libtiff-dev gfortran openexr libatlas
 sudo apt -y install python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-dev
 
 # Create build directory
-mkdir ./opencv_build 
+sudo mkdir ./opencv_build 
 cd ./opencv_build
 
 # Download the opencv
@@ -21,7 +21,7 @@ git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
 # Create temp build
-mkdir -p ./opencv_build/opencv/build 
+sudo mkdir -p ./opencv_build/opencv/build 
 cd ./opencv_build/opencv/build
 
 # CMAKE
