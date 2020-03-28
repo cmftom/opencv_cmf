@@ -12,16 +12,21 @@ sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev lib
 sudo apt -y install libjpeg-dev libpng-dev libtiff-dev gfortran openexr libatlas-base-dev opencl-headers
 sudo apt -y install python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-dev
 
-# Do everything at /opt
-cd /opt/.
-
 # Download the opencv
-git clone https://github.com/opencv/opencv.git
-git clone https://github.com/opencv/opencv_contrib.git
+cd /opt
+wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
+unzip ${OPENCV_VERSION}.zip
+rm -rf ${OPENCV_VERSION}.zip
+
+
+cd /opt
+wget https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
+unzip ${OPENCV_VERSION}.zip
+rm -rf ${OPENCV_VERSION}.zip
 
 # Create temp build
-sudo mkdir -p /opt/opencv/build 
-cd /opt/opencv/build
+mkdir -p /opt/opencv-${OPENCV_VERSION}/build && \
+cd /opt/opencv-${OPENCV_VERSION}/build && \
 
 # CMAKE
 sudo cmake \
@@ -53,3 +58,6 @@ make -j4
 
 # Install
 sudo make install
+
+cd / && \
+rm -rf /opt/opencv-${OPENCV_VERSION} && \
