@@ -21,8 +21,8 @@ git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
 # Create temp build
-mkdir -p ~/opencv_build/opencv/build 
-cd ~/opencv_build/opencv/build
+mkdir -p ./opencv_build/opencv/build 
+cd ./opencv_build/opencv/build
 
 # CMAKE
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
