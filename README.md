@@ -1,5 +1,11 @@
 -------
 ## It is use for download latest OpenCV for Linux (Raspberry pi)
+```
+$ pip3 install opencv-python
+$ sudo apt-get install libatlas-base-dev libjasper-dev libqtgui4 python3-pyqt5 -y
+```
+Can already install opencv-4.1
+
 -------
 # Clone this git inside
 ```
